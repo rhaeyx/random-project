@@ -5,15 +5,38 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 
-export default function Authenticated({ user, header, children }) {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export default function Authenticated({ user, header, children, status }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
     const routify = (route) => {
         return user.role + "." + route;
     };
+
+    if (status) {
+        console.log(status);
+        switch (status.type) {
+            case "success":
+                toast.success(status.message);
+                break;
+            case "error":
+                toast.error(status.message);
+                break;
+            case "warn":
+                toast.warn(status.message);
+                break;
+            default:
+                toast(status.message);
+                break;
+        }
+    }
+
     return (
         <div className="min-h-screen bg-gray-100">
+            <ToastContainer hideProgressBar={true} />
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">

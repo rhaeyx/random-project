@@ -2,7 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InviteSection from "@/Components/Admin/InviteSection";
 import { Head } from "@inertiajs/react";
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({ auth, status }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -11,6 +11,7 @@ export default function Dashboard({ auth }) {
                     Admin Dashboard
                 </h2>
             }
+            status={status}
         >
             <Head title="Dashboard" />
 

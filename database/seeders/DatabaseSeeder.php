@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $seeders = [AdminSeeder::class];
 
-        if (env('app.env') != 'production') {
+        if (config('app.env') != 'production') {
             $seeders[] = UserSeeder::class;
         }
 
